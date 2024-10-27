@@ -7,7 +7,7 @@ import {
 const router = express.Router();
 
 router.post("/create", createResidency);
-router.get("/allresidencies", getAllResidencies);
+router.get("/allresd", getAllResidencies);
 router.get("/:id", getResidency);
 
 export { router as residencyRoute };
