@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import "./UploadImage.css";
 import { Button, Group } from "@mantine/core";
+import { createResidency } from "../../utils/api";
 const UploadImage = ({
   propertyDetails,
   setPropertyDetails,
@@ -19,17 +20,20 @@ const UploadImage = ({
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
       {
-        cloudName: "dcdhklrjc",
-        uploadPreset: "vx0dyjgc",
+        cloudName: "dcneqmvin",
+        uploadPreset: "RealEstate",
         maxFiles: 1,
       },
-      (err, result) => {
+      async (err, result) => {
         if (result.event === "success") {
+          console.log(result);
           setImageURL(result.info.secure_url);
+          await createResidency(result.info, localStorage.getItem("access_token"));
         }
       }
     );
   }, []);
+
   return (
     <div className="flexColCenter uploadWrapper">
       {!imageURL ? (

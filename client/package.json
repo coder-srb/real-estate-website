@@ -17,6 +17,7 @@
     "@mantine/hooks": "^6.0.16",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
+    "dotenv": "^16.5.0",
     "esri-leaflet-geocoder": "2.3.3",
     "framer-motion": "^10.8.5",
     "leaflet": "^1.9.4",

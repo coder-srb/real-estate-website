@@ -8,6 +8,7 @@ import { useMutation } from "react-query";
 import { createUser } from "../../utils/api";
 import useFavourites from "../../hooks/useFavourites";
 import useBookings from "../../hooks/useBookings";
+const audience = import.meta.env.VITE_API_AUDIENCE;
 
 const Layout = () => {
 
@@ -25,15 +26,20 @@ const Layout = () => {
   useEffect(() => {
     const getTokenAndRegsiter = async () => {
 
-      const res = await getAccessTokenWithPopup({
-        authorizationParams: {
-          audience: "http://localhost:8000",
-          scope: "openid profile email",
-        },
-      });
-      localStorage.setItem("access_token", res);
-      setUserDetails((prev) => ({ ...prev, token: res }));
-      mutate(res)
+      try {
+        const res = await getAccessTokenWithPopup({
+          authorizationParams: {
+            audience: audience,
+            scope: "openid profile email",
+          },
+        });
+        console.log("Result: ", res)
+        localStorage.setItem("access_token", res);
+        setUserDetails((prev) => ({ ...prev, token: res }));
+        mutate(res)
+      } catch(e) {
+        console.log("Error while logging: ", e);
+      }
     };
 
 
