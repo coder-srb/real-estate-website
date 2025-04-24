@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import { Auth0Provider } from "@auth0/auth0-react";
 
+const AUDIENCE = import.meta.env.VITE_API_AUDIENCE;
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Auth0Provider
@@ -12,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
      authorizationParams={{
       redirect_uri: window.location.origin
      }}
-     audience="http://localhost:8000"
+     audience={AUDIENCE}
      scope="openid profile email"
     >
       <App />
